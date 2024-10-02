@@ -30,9 +30,9 @@ function renderTable(data){
         table+= `<tr>
                         <td>${subject.code}</td>
                         <td>${subject.name}</td>
-                        <td>${subject.credits}</td>
+                        <td class="credits">${subject.credits}</td>
                         <td>
-                        <select id=semester>
+                        <select class="grade">
                             <option value="O">O</option>
                             <option value="A+">A+</option>
                             <option value="A">A</option>
@@ -49,6 +49,9 @@ function renderTable(data){
 
 //GPA CALCULATION
 function calculateGPA(){
+
+    console.log("Button Clicked");
+
     const rows=document.querySelectorAll("#tableContainer table tr");
     let totalcredits=0;
     let totalGradePoints=0;
@@ -60,14 +63,15 @@ function calculateGPA(){
         const grade=row.querySelector('.grade').value;
 
         const gradeValue=gradeValues[grade];
-
+        if (!gradeValue) return;
+        
         totalcredits += credits;
         console.log(totalcredits);
         totalGradePoints += credits * gradeValue;
     });
 
     const gpa = totalGradePoints/totalcredits;
-    document.getElementById("gpadiv").innerText='Your GPA is: ${gpa.tofixed(2)}';
+    document.getElementById("gpadiv").innerText=`Your GPA is: ${gpa.toFixed(2)}`;
 }
   
 document.getElementById("gpa-button").addEventListener("click",calculateGPA);

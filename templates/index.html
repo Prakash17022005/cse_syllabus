@@ -8,26 +8,33 @@
     <script src="{{ url_for('static', filename='script.js') }}" defer></script>
 </head>
 <body>
-    <h1>Choose a semester to view</h1>
 
-    <label for="semester">Choose a semester:</label>
-    <select id="semester" onchange="getSemesterData()">
-        <option value="1">Semester 1</option>
-        <option value="2">Semester 2</option>
-        <option value="3">Semester 3</option>
-        <option value="4">Semester 4</option>
-        <option value="5">Semester 5</option>
-        <option value="6">Semester 6</option>
-        <option value="7">Semester 7</option>
-        <option value="8">Semester 8</option>
-    </select>
+    <center>
+        <h1>Choose a semester to view</h1>
 
-    <div id="tableContainer"></div>
-
-    <button id="gpa-button">Calculate GPA</button>
-
-    <div id="gpadiv"></div>
-
+        <label for="semester">Choose a semester:</label>
+        <select id="semester" onchange="getSemesterData()">
+            <option value="1">Semester 1</option>
+            <option value="2">Semester 2</option>
+            <option value="3">Semester 3</option>
+            <option value="4">Semester 4</option>
+            <option value="5">Semester 5</option>
+            <option value="6">Semester 6</option>
+            <option value="7">Semester 7</option>
+            <option value="8">Semester 8</option>
+        </select>
+    
+        <div id="tableContainer"></div>
+    
+        <table>
+            <td><button id="gpa-button">Calculate GPA</button></td>
+            <td><div id="gpadiv"></div></td>
+        </table>
+        
+        <br><br>
+    
+    </center>
+    
     <script src="script.js"></script>
 
 

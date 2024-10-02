@@ -1,18 +1,21 @@
 body{
     font-family: Georgia, 'Times New Roman', Times, serif;
     margin:20px;
-    
+    align-content: center;
+    justify-content: center;
+    background-color: black;
+    color: white;
 }
 
 table{
     width:50%;
     border-collapse: collapse;
     margin:10px 0;
-    color:black;
+    color:white;
 }
 
 table,th,td{
-    border:1px solid black
+    border:1px solid white;
 }
 
 th,td{
@@ -22,4 +25,9 @@ th,td{
 
 select{
     padding:5px;
+}
+
+#gpa-button{
+    align-items: center;
+    justify-content: center;
 }
