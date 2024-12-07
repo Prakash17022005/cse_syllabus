@@ -16,7 +16,7 @@ def get_subjects():
     
     if semester:
         
-        df=pd.read_excel('subjects.xlsx',sheet_name=f'semester{semester}')
+        df=pd.read_excel('static/subjects.xlsx',sheet_name=f'semester{semester}')
         
         subjects=df.to_dict(orient='records')
         
