@@ -1,7 +1,5 @@
 from flask import Flask, request, jsonify, render_template
 import pandas as pd
-from flask_cors import CORS
-
 
 #flask app
 app=Flask(__name__)
