@@ -3,3 +3,4 @@ gunicorn
 opencv-python
 numpy
 pandas
+openpyxl
