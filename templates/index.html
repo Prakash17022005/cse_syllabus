@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sylabus</title>
+    <title>GPA CALCULATOR</title>
     
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
@@ -27,11 +27,57 @@
         </select>
     
         <div id="tableContainer"></div>
+
+        <br><br>
+
+        <label for="electiveInput"><b>Add Subject : </b></label>
+        <input type="text" id="electiveInput" placeholder="e.g. Sub_code">
+        <button onclick="addElective()">ADD</button>
+        
+        <br><br>
+
+        <!-- ✅ Custom Subject Entry in Table Format -->
+        <h3>Add Custom Subject</h3>
+        <table border="1" style="margin-top: 10px;">
+            <tr>
+                <th>Subject Code</th>
+                <td><input type="text" id="customCode" placeholder="e.g. CS9999"></td>
+            </tr>
+            <tr>
+                <th>Subject Name</th>
+                <td><input type="text" id="customName" placeholder="Custom Subject Name"></td>
+            </tr>
+            <tr>
+                <th>Credits</th>
+                <td><input type="number" id="customCredits" placeholder="e.g. 3" min="1"></td>
+            </tr>
+            <tr>
+                <th>Grade</th>
+                <td>
+                    <select id="customGrade">
+                        <option value="O">O</option>
+                        <option value="A+">A+</option>
+                        <option value="A">A</option>
+                        <option value="B+">B+</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Action</th>
+                <td><button onclick="addCustomSubject()">Add</button></td>
+            </tr>
+        </table>
+
+
+        <br><br>
     
         <table>
             <td><button id="gpa-button">Calculate GPA</button></td>
             <td><div id="gpadiv"></div></td>
         </table>
+        
         
         <br><br>
     
