@@ -33,6 +33,7 @@ function renderTable(data){
                         <td class="credits">${subject.credits}</td>
                         <td>
                         <select class="grade">
+                            <option value="none">select</option>
                             <option value="O">O</option>
                             <option value="A+">A+</option>
                             <option value="A">A</option>
@@ -109,6 +110,7 @@ function appendSubjectRow(subject) {
         <td class="credits">${subject.credits}</td>
         <td>
             <select class="grade">
+                <option value="none">select</option>
                 <option value="O">O</option>
                 <option value="A+">A+</option>
                 <option value="A">A</option>
@@ -142,6 +144,7 @@ function addCustomSubject() {
         <td class="credits">${credits}</td>
         <td>
             <select class="grade">
+                
                 <option value="O" ${grade === "O" ? "selected" : ""}>O</option>
                 <option value="A+" ${grade === "A+" ? "selected" : ""}>A+</option>
                 <option value="A" ${grade === "A" ? "selected" : ""}>A</option>
@@ -159,5 +162,62 @@ function addCustomSubject() {
     document.getElementById("customCredits").value = "";
     document.getElementById("customGrade").value = "O";
 }
+
+
+//Report Download
+async function downloadReport(){
+    const {jsPDF}=window.jspdf;
+    const doc=new jsPDF();
+
+    let semester=document.getElementById("semester").value;
+    let gpaText=document.getElementById("gpadiv").innerText;
+
+    // Add heading
+    doc.setFontSize(16);
+    doc.text("GPA Report",80,15);
+
+    // Add semester
+    doc.setFontSize(12);
+    doc.text(`Semester: ${semester}`, 14, 25);
+
+    const rows=document.querySelectorAll("#tableContainer table tr");
+
+    let tableData=[];
+    rows.forEach((row)=>{
+        const cells = row.querySelectorAll("th,td");
+        const rowData=[];
+        cells.forEach(cell=>{
+            const select = cell.querySelector("select");
+            if(select){
+                rowData.push(select.value);
+            }
+            else{
+                rowData.push(cell.innerText.trim());
+            }
+            });
+        
+        tableData.push(rowData);
+    });
+
+    //Format Table with autoTable
+    doc.autoTable({
+        startY:30,
+        head:[tableData[0]],
+        body:tableData.slice(1),
+        theme:'grid',
+        styles: { fontSize: 11 },
+    headStyles: { fillColor: [22, 160, 133] },
+        
+    });
+
+    let finalY=doc.lastAutoTable.finalY || 40;
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(13);
+    doc.text(gpaText,14,finalY+10);
+
+    doc.save("GPA_Report.pdf");
+
+}
+
 
     
